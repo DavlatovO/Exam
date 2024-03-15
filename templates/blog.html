@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %} 
+
+<!--Blog Start-->
+
+<body style="font-family: Arial, sans-serif; line-height: 1.6;">
+    <section id="home-section" class="line" style="padding-top: 20px;">
+        <div class="margin">
+            <div class="s-12 l-9">
+                {% for post in blog_posts %}
+                <article class="post-{{ forloop.counter }} line" style="margin-bottom: 40px; border-bottom: 1px solid #ccc; padding-bottom: 20px; overflow: hidden;">
+                    <!-- image -->
+                    <div class="s-12 l-6 post-image" style="float: left;">
+                        <a href="{{ post.get_absolute_url }}">
+                            <img src="{{ post.image.url }}" alt="{{ post.title }}" style="width: 100%; height: 500px;">
+                        </a>
+                    </div>
+                    <!-- text -->
+                    <div class="s-12 l-5 post-text" style="float: left; padding-left: 20px;">
+                        <a href="{{ post.get_absolute_url }}" style="text-decoration: none;">
+                            <h2 style="margin-top: 0; font-family: 'Times New Roman', serif; color: #333;">{{ post.title }}</h2>
+                        </a>
+                        <p style="color: #666;">{{ post.body }}</p>
+                    </div>
+                    <!-- date -->
+                    <div class="s-12 l-1 post-date" style="float: right; text-align: right;">
+                        <p class="date" style="margin: 0; font-size: 24px; font-weight: bold; color: #999;"> {{ post.date.day }} </p>
+                        <p class="month" style="margin: 0; font-size: 24px; font-weight: bold; color: #999;"> {{ post.date|date:"M" }} </p>
+                    </div>
+                    <div style="clear: both;"></div>
+                </article>
+                {% endfor %}
+            </div>
+            
+        </div>
+    </section>
+</body>
+
+<!--Blog End-->
+
+
+
+{% endblock %} 
